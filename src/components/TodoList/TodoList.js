@@ -1,35 +1,44 @@
-import React from 'react'
+import React, { Component } from 'react'
 import TodoItem from './TodoItem'
 
-const renderTodoList = (props) => {
+const renderTodoList = (editItemId, toggleEditMode, props) => {
   return props.todos.map((todo) => {
     return (
       <TodoItem
         key={todo.id}
+        editItemId={editItemId}
         todo={todo}
+        toggleEditMode={toggleEditMode}
         {...props.actions}
       />
     )
   })
 }
 
-const TodoList= (props) => {
-  if (props.todos.length > 0) {
-    return (
-      <div>
-        <div className="tabs is-centered">
-          <ul>
-            <li className="is-active"><a>All</a></li>
-            <li><a>Active</a></li>
-            <li><a>Completed</a></li>
-          </ul>
-        </div>
-        {renderTodoList(props)}
-      </div>
-    )
-  } else {
-    return null
+class TodoList extends Component {
+  constructor(props) {
+      super(props)
+      this.state = {
+          editItemId: null
+      }
+      this.toggleEditMode = this.toggleEditMode.bind(this)
   }
+
+  toggleEditMode(id) {
+      this.setState({
+          editItemId: id
+      })
+  }
+
+  render() {
+    return (
+      <section role="todoList">
+        {renderTodoList(this.state.editItemId, this.toggleEditMode, this.props)}
+      </section>
+    )
+  }
+
 }
+
 
 export default TodoList

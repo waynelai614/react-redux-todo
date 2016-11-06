@@ -10,10 +10,29 @@ const MainSection = (props) => (
           <div className="box">
             <TodoForm
               addTodo={props.actions.addTodo}
-             />
-            <TodoList
-              {...props}
-             />
+            />
+            {props.todos.length > 0
+              &&
+                <section role="todo-section">
+                  <div className="tabs is-right is-small">
+                    <ul>
+                      <li>Sort By</li>
+                      <li className="is-active"><a>Default</a></li>
+                      <li><a>Due Date</a></li>
+                      <li><a>Priority</a></li>
+                    </ul>
+                  </div>
+                  <TodoList {...props} />
+                  <hr/>
+                  <div className="tabs is-centered is-toggle">
+                    <ul>
+                      <li className="is-active"><a>All</a></li>
+                      <li><a>Active</a></li>
+                      <li><a>Completed</a></li>
+                    </ul>
+                  </div>
+                </section>
+            }
           </div>
         </div>
       </div>
