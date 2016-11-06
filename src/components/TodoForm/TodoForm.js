@@ -28,7 +28,7 @@ class TodoForm extends Component {
               </p>
             </div>
             <div className="column">
-              <a className="button is-primary is-fullwidth">Add</a>
+              <a className="button is-primary is-fullwidth" onClick={() => { this.props.addTodo('New Todo')}}>Add Todo</a>
             </div>
           </div>
       )
