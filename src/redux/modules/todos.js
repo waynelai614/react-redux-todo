@@ -7,9 +7,10 @@ const TOGGLE_TODO = 'TOGGLE_TODO'
 const DELETE_TODO = 'DELETE_TODO'
 
 // actions
-export const addTodo = (text) => ({
+export const addTodo = (text, priority) => ({
   type: ADD_TODO,
-  text
+  text,
+  priority
 })
 
 export const editTodo = (todo) => ({
@@ -44,14 +45,15 @@ const todos = (state = initialState, action) => {
         {
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           completed: false,
-          text: action.text
+          text: action.text,
+          priority: action.priority
         },
         ...state
       ]
     case EDIT_TODO:
       return state.map(todo =>
-        todo.id === action.id ?
-          { ...todo, text: action.text } :
+        todo.id === action.todo.id ?
+          { ...action.todo } :
           todo
       )
     case TOGGLE_TODO:
