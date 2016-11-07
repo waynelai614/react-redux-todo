@@ -38,11 +38,12 @@ class TodoList extends Component {
   }
 
   render() {
+    const { editItemId } = this.state
     const { todos, filter, actions } = this.props
     const filteredTodos = todos.filter(TODO_FILTERS[filter])
     return (
       <section>
-        {renderTodoList(this.state.editItemId, this.toggleEditMode, filteredTodos, actions)}
+        {renderTodoList(editItemId, this.toggleEditMode, filteredTodos, actions)}
       </section>
     )
   }
