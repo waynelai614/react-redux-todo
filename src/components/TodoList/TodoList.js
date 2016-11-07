@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import TodoItem from './TodoItem'
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../constants/TodoFilters'
 
-const renderTodoList = (editItemId, toggleEditMode, props) => {
-  return props.todos.map((todo) => {
+const TODO_FILTERS = {
+  [SHOW_ALL]: () => true,
+  [SHOW_ACTIVE]: todo => !todo.completed,
+  [SHOW_COMPLETED]: todo => todo.completed
+}
+
+const renderTodoList = (editItemId, toggleEditMode, todos, actions) => {
+  return todos.map((todo) => {
     return (
       <TodoItem
         key={todo.id}
         editItemId={editItemId}
         todo={todo}
         toggleEditMode={toggleEditMode}
-        {...props.actions}
+        {...actions}
       />
     )
   })
@@ -31,9 +38,11 @@ class TodoList extends Component {
   }
 
   render() {
+    const { todos, filter, actions } = this.props
+    const filteredTodos = todos.filter(TODO_FILTERS[filter])
     return (
       <section>
-        {renderTodoList(this.state.editItemId, this.toggleEditMode, this.props)}
+        {renderTodoList(this.state.editItemId, this.toggleEditMode, filteredTodos, actions)}
       </section>
     )
   }

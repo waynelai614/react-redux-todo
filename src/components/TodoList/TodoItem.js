@@ -12,7 +12,7 @@ const renderEditMode = (state, toggleEditMode, handleChange, handleEditTodo) => 
     <article className="media">
       <div className="media-content">
         <div className="columns">
-          <div className="column">
+          <div className="column is-6">
             <input
               ref="taskInput"
               type="text"
@@ -23,10 +23,10 @@ const renderEditMode = (state, toggleEditMode, handleChange, handleEditTodo) => 
               placeholder="What needs to be done?"
             />
           </div>
-          <div className="column">
+          <div className="column is-2">
             <input type="text" className="input" />
           </div>
-          <div className="column">
+          <div className="column is-2">
             <p className="control">
               <span className="select is-fullwidth">
                 <PrioritySelect
@@ -61,11 +61,11 @@ const repeatStr = (str, times) => {
   return (new Array(times + 1)).join(str);
 }
 const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
-  const { id, text, priority } = todo
+  const { id, text, priority, completed } = todo
   return (
     <article className="media">
       <figure className="media-left">
-        <input type="checkbox" onClick={() => toggleTodo(id)} />
+        <input type="checkbox" checked={completed} onClick={() => toggleTodo(id)} />
       </figure>
       <div className="media-content" onDoubleClick={() => toggleEditMode(id)}>
         <div className="content">
