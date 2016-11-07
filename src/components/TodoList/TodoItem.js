@@ -85,7 +85,7 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
             className="todo-task"
             data-priority={repeatStr('!', priority)}
           ><strong>{text}</strong></p>
-          <p><small>{dueDate && `Due date: ${dueDateStr}`}</small></p>
+          <p className="has-text-right">{dueDate && `Due date: ${dueDateStr}`}</p>
         </div>
       </div>
       <div className="media-right">

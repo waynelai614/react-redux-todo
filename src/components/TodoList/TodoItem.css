@@ -24,9 +24,9 @@ article.todo-item:last-child {
 }
 
 article.todo-item > .media-right {
-  display: none;
+  visibility: hidden;
 }
 
 article.todo-item:hover > .media-right {
-  display: block;
+  visibility: visible;
 }
