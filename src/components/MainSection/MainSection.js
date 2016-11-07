@@ -1,11 +1,30 @@
 import React from 'react'
 import TodoForm from '../TodoForm'
 import TodoList from '../TodoList'
+import { SORT_BY_DEFAULT, SORT_BY_DUE_DATE, SORT_BY_PRIORITY } from '../../constants/TodoSorting'
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../constants/TodoFilters'
 import './MainSection.css'
 
+const TODO_SORTING = {
+  [SORT_BY_DEFAULT]: 'Default',
+  [SORT_BY_DUE_DATE]: 'Due Date',
+  [SORT_BY_PRIORITY]: 'Priority'
+}
+
+const renderSortingLink = (sort, sortKey, sortBy) => {
+  const { key, isDescending } = sort
+  const sortIconClassName = isDescending ? 'fa fa-sort-desc' : 'fa fa-sort-asc'
+  const iconClassName = (key === sortKey) ? sortIconClassName : 'fa fa-sort'
+  return (
+    <a onClick={() => sortBy(sortKey)}>
+      <span>{TODO_SORTING[sortKey]}</span>
+      <span className="icon is-small"><i className={iconClassName}></i></span>
+    </a>
+  )
+}
+
 const MainSection = (props) => {
-  const { filter } = props
+  const { filter, sort } = props
   return (
     <section className="section">
       <div className="container">
@@ -21,9 +40,15 @@ const MainSection = (props) => {
                     <div className="tabs is-right is-small">
                       <ul>
                         <li>Sort by</li>
-                        <li className="is-active"><a>Default</a></li>
-                        <li><a>Due Date</a></li>
-                        <li><a>Priority</a></li>
+                        <li className={sort.key === SORT_BY_DEFAULT && "is-active"}>
+                          {renderSortingLink(sort, SORT_BY_DEFAULT, props.actions.sortBy)}
+                        </li>
+                        <li className={sort.key === SORT_BY_DUE_DATE && "is-active"}>
+                          {renderSortingLink(sort, SORT_BY_DUE_DATE, props.actions.sortBy)}
+                        </li>
+                        <li className={sort.key === SORT_BY_PRIORITY && "is-active"}>
+                          {renderSortingLink(sort, SORT_BY_PRIORITY, props.actions.sortBy)}
+                        </li>
                       </ul>
                     </div>
                     <TodoList {...props} />

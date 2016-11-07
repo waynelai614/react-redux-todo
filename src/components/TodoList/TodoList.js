@@ -41,6 +41,7 @@ class TodoList extends Component {
     const { editItemId } = this.state
     const { todos, filter, actions } = this.props
     const filteredTodos = todos.filter(TODO_FILTERS[filter])
+
     return (
       <section>
         {renderTodoList(editItemId, this.toggleEditMode, filteredTodos, actions)}

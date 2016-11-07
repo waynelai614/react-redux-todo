@@ -1,3 +1,5 @@
+import { SHOW_ALL } from '../../constants/TodoFilters'
+
 // constants
 const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
@@ -8,7 +10,7 @@ export const setVisibilityFilter = (filter) => ({
 })
 
 // reducers
-const initialState = 'SHOW_ALL'
+const initialState = SHOW_ALL
 
 const visibilityFilter = (state = initialState, action) => {
   switch (action.type) {
