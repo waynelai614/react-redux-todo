@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PrioritySelect from '../Common/PrioritySelect'
+import SingleDatePickerWrapper from '../Common/SingleDatePickerWrapper'
 
 const TODO_TEXT = 'text'
 const TODO_PROIORITY = 'priority'
@@ -10,10 +11,12 @@ class TodoForm extends Component {
       this.state = {
           [TODO_TEXT]: '',
           [TODO_PROIORITY]: 0,
-          dueDate: '',
+          dueDate: null,
           dueDateFoucsed: false,
       }
       this.handleChange = this.handleChange.bind(this)
+      this.handleDateChange = this.handleDateChange.bind(this)
+      this.handleDateFocusChange = this.handleDateFocusChange.bind(this)
       this.handleAddTodo = this.handleAddTodo.bind(this)
   }
 
@@ -24,24 +27,39 @@ class TodoForm extends Component {
     })
   }
 
+  handleDateChange(moment) {
+    this.setState({
+      dueDate: moment
+    })
+  }
+
+  handleDateFocusChange({ focused }) {
+    this.setState({
+      dueDateFoucsed: focused
+    })
+  }
+
   handleAddTodo() {
-    const { text, priority } = this.state
+    const { text, priority, dueDate } = this.state
 
     if (!text) {
       this.refs.taskInput.focus()
       return
     }
 
-    this.props.addTodo(text, priority)
+    const dueDateTimeStamp = (dueDate !== null) ? dueDate.valueOf() : dueDate
+
+    this.props.addTodo(text, priority, dueDateTimeStamp)
     this.setState({
       [TODO_TEXT]: '',
-      [TODO_PROIORITY]: 0
+      [TODO_PROIORITY]: 0,
+      dueDate: null
     })
   }
 
   render () {
     const { handleChange, handleAddTodo } = this
-    const { text, priority } = this.state
+    const { text, priority, dueDate, dueDateFoucsed } = this.state
     return (
         <div className="columns is-multiline">
           <div className="column is-7">
@@ -59,9 +77,15 @@ class TodoForm extends Component {
           </div>
           <div className="column is-3">
             <label className="label">Due Date</label>
-            <p className="control">
+            {/* <p className="control">
               <input className="input" type="text" placeholder="Text input" />
-            </p>
+            </p> */}
+            <SingleDatePickerWrapper
+              date={dueDate}
+              focused={dueDateFoucsed}
+              onDateChange={this.handleDateChange}
+              onFocusChange={this.handleDateFocusChange}
+            />
           </div>
           <div className="column is-2">
             <label className="label">Priority</label>

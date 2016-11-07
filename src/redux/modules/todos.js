@@ -7,10 +7,11 @@ const TOGGLE_TODO = 'TOGGLE_TODO'
 const DELETE_TODO = 'DELETE_TODO'
 
 // actions
-export const addTodo = (text, priority) => ({
+export const addTodo = (text, priority, dueDate) => ({
   type: ADD_TODO,
   text,
-  priority
+  priority,
+  dueDate
 })
 
 export const editTodo = (todo) => ({
@@ -46,7 +47,8 @@ const todos = (state = initialState, action) => {
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           completed: false,
           text: action.text,
-          priority: action.priority
+          priority: action.priority,
+          dueDate: action.dueDate
         },
         ...state
       ]

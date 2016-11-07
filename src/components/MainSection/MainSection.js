@@ -2,6 +2,7 @@ import React from 'react'
 import TodoForm from '../TodoForm'
 import TodoList from '../TodoList'
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../constants/TodoFilters'
+import './MainSection.css'
 
 const MainSection = (props) => {
   const { filter } = props

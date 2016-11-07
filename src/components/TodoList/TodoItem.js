@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import PrioritySelect from '../Common/PrioritySelect'
+import SingleDatePickerWrapper from '../Common/SingleDatePickerWrapper'
+import moment from 'moment'
 import './TodoItem.css'
 
 const TODO_TEXT = 'text'
 const TODO_PROIORITY = 'priority'
 
 // edit mode
-const renderEditMode = (state, toggleEditMode, handleChange, handleEditTodo) => {
-  const { text, priority } = state
+const renderEditMode = (state, toggleEditMode, handleChange, handleDateChange, handleDateFocusChange, handleEditTodo) => {
+  const { text, priority, dueDate, dueDateFoucsed } = state
   return (
     <article className="media">
       <div className="media-content">
@@ -24,7 +26,12 @@ const renderEditMode = (state, toggleEditMode, handleChange, handleEditTodo) => 
             />
           </div>
           <div className="column is-2">
-            <input type="text" className="input" />
+            <SingleDatePickerWrapper
+              date={dueDate}
+              focused={dueDateFoucsed}
+              onDateChange={handleDateChange}
+              onFocusChange={handleDateFocusChange}
+            />
           </div>
           <div className="column is-2">
             <p className="control">
@@ -61,7 +68,8 @@ const repeatStr = (str, times) => {
   return (new Array(times + 1)).join(str);
 }
 const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
-  const { id, text, priority, completed } = todo
+  const { id, text, priority, dueDate, completed } = todo
+  const dueDateStr = moment(dueDate).format('YYYY/MM/DD')
   return (
     <article className="media">
       <figure className="media-left">
@@ -73,7 +81,7 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
             className="todo-task"
             data-priority={repeatStr('!', priority)}
           ><strong>{text}</strong></p>
-          <p>Due date: Today</p>
+          <p><small>{dueDate && `Due date: ${dueDateStr}`}</small></p>
         </div>
       </div>
       <div className="media-right">
@@ -92,19 +100,22 @@ class TodoItem extends Component {
       this.state = {
           [TODO_TEXT]: '',
           [TODO_PROIORITY]: 0,
-          dueDate: '',
+          dueDate: null,
           dueDateFoucsed: false,
       }
       this.toggleEditMode = this.toggleEditMode.bind(this)
       this.handleChange = this.handleChange.bind(this)
+      this.handleDateChange = this.handleDateChange.bind(this)
+      this.handleDateFocusChange = this.handleDateFocusChange.bind(this)
       this.handleEditTodo = this.handleEditTodo.bind(this)
   }
 
   toggleEditMode(id) {
-      const { text, priority } = this.props.todo
+      const { text, priority, dueDate } = this.props.todo
       this.setState({
           [TODO_TEXT]: text,
           [TODO_PROIORITY]: priority,
+          dueDate: dueDate !== null ? moment(dueDate) : null
       })
       this.props.toggleEditMode(id)
   }
@@ -116,8 +127,20 @@ class TodoItem extends Component {
     })
   }
 
+  handleDateChange(moment) {
+    this.setState({
+      dueDate: moment
+    })
+  }
+
+  handleDateFocusChange({ focused }) {
+    this.setState({
+      dueDateFoucsed: focused
+    })
+  }
+
   handleEditTodo() {
-    const { text, priority } = this.state
+    const { text, priority, dueDate } = this.state
 
     if (!text) {
       this.refs.taskInput.focus()
@@ -125,15 +148,19 @@ class TodoItem extends Component {
     }
 
     const todo = this.props.todo
+    const dueDateTimeStamp = (dueDate !== null) ? dueDate.valueOf() : dueDate
 
-    this.props.editTodo({ ...todo, text: text, priority: priority })
+    this.props.editTodo({ ...todo,
+      priority: priority,
+      dueDate: dueDateTimeStamp
+     })
     this.props.toggleEditMode(null)
   }
 
   render() {
     const { editItemId, todo, toggleTodo, deleteTodo } = this.props
     if (editItemId === todo.id) {
-      return renderEditMode(this.state, this.toggleEditMode, this.handleChange, this.handleEditTodo)
+      return renderEditMode(this.state, this.toggleEditMode, this.handleChange, this.handleDateChange, this.handleDateFocusChange, this.handleEditTodo)
     } else {
       return renderViewMode(todo, this.toggleEditMode, toggleTodo, deleteTodo)
     }
