@@ -1,27 +1,32 @@
-p.todo-task::before {
+article.todo-item p.todo-task::before {
   content: attr(data-priority);
   margin-right: 0.5em;
   color: red;
 }
 
-p.todo-task {
+article.todo-item p.todo-task {
   font-size: 1.5em;
 }
 
-.content p.todo-task:not(:last-child) {
+article.todo-item .content p.todo-task:not(:last-child) {
   margin-bottom: 0;
 }
 
-article.media:last-child {
+article.todo-item .button .icon:first-child,
+article.todo-item .button .icon:last-child {
+  margin: 0 2px;
+}
+
+article.todo-item:last-child {
   border-bottom: 1px solid rgba(219, 219, 219, 0.5);
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
 
-article.media > .media-right {
+article.todo-item > .media-right {
   display: none;
 }
 
-article.media:hover > .media-right {
+article.todo-item:hover > .media-right {
   display: block;
 }

@@ -11,7 +11,7 @@ const TODO_PROIORITY = 'priority'
 const renderEditMode = (state, toggleEditMode, handleChange, handleDateChange, handleDateFocusChange, handleEditTodo) => {
   const { text, priority, dueDate, dueDateFoucsed } = state
   return (
-    <article className="media">
+    <article className="media todo-item">
       <div className="media-content">
         <div className="columns">
           <div className="column is-6">
@@ -47,12 +47,16 @@ const renderEditMode = (state, toggleEditMode, handleChange, handleDateChange, h
             <div className="control is-grouped">
               <p className="control">
                 <a className="button is-primary" onClick={handleEditTodo}>
-                  Update
+                  <span className="icon is-small">
+                    <i className="fa fa-check"></i>
+                  </span>
                 </a>
               </p>
               <p className="control">
                 <a className="button" onClick={() => toggleEditMode(null)}>
-                  X
+                  <span className="icon is-small">
+                    <i className="fa fa-times"></i>
+                  </span>
                 </a>
               </p>
             </div>
@@ -71,7 +75,7 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
   const { id, text, priority, dueDate, completed } = todo
   const dueDateStr = moment(dueDate).format('YYYY/MM/DD')
   return (
-    <article className="media">
+    <article className="media todo-item">
       <figure className="media-left">
         <input type="checkbox" checked={completed} onChange={() => toggleTodo(id)} />
       </figure>
