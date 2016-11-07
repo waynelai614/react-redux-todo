@@ -1,3 +1,38 @@
+.SingleDatePicker__tether--show {
+  z-index: 99;
+}
+
+.SingleDatePicker {
+  width: 100%;
+}
+
+.SingleDatePickerInput {
+  height: 32px;
+  border-radius: 3px;
+}
+
+.DateInput {
+  font-size: 14px;
+  padding: 5px;
+  line-height: 12px;
+  width: 100%;
+}
+
+.SingleDatePickerInput__clear-date {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  padding: 2px;
+  transform: translateY(-50%);
+  margin-right: 5px;
+}
+
+.SingleDatePickerInput__clear-date svg {
+  width: 16px;
+  height: 9px;
+  vertical-align: baseline;
+}
+
 .CalendarDay__day {
   text-align: center;
 }

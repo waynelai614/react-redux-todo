@@ -77,9 +77,6 @@ class TodoForm extends Component {
           </div>
           <div className="column is-3">
             <label className="label">Due Date</label>
-            {/* <p className="control">
-              <input className="input" type="text" placeholder="Text input" />
-            </p> */}
             <SingleDatePickerWrapper
               date={dueDate}
               focused={dueDateFoucsed}

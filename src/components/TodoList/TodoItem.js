@@ -85,7 +85,7 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
             className="todo-task"
             data-priority={repeatStr('!', priority)}
           ><strong>{text}</strong></p>
-          <p className="has-text-right">{dueDate && `Due date: ${dueDateStr}`}</p>
+          <p className="has-text-right"><small>{dueDate && `Due date: ${dueDateStr}`}</small></p>
         </div>
       </div>
       <div className="media-right">
@@ -155,6 +155,7 @@ class TodoItem extends Component {
     const dueDateTimeStamp = (dueDate !== null) ? dueDate.valueOf() : dueDate
 
     this.props.editTodo({ ...todo,
+      text: text,
       priority: priority,
       dueDate: dueDateTimeStamp
      })
