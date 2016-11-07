@@ -12,7 +12,7 @@ const renderEditMode = (state, toggleEditMode, handleChange, handleDateChange, h
   const { text, priority, dueDate, dueDateFoucsed } = state
   return (
     <article className="media todo-item">
-      <div className="media-content">
+      <div className="media-content edit-mode">
         <div className="columns">
           <div className="column is-6">
             <input
@@ -75,17 +75,22 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
   const { id, text, priority, dueDate, completed } = todo
   const dueDateStr = moment(dueDate).format('YYYY/MM/DD')
   return (
-    <article className="media todo-item">
+    <article className={`media todo-item ${ completed ? 'completed' : ''}`}>
       <figure className="media-left">
-        <input type="checkbox" checked={completed} onChange={() => toggleTodo(id)} />
+        <input
+          className="toggle"
+          type="checkbox"
+          checked={completed}
+          onChange={() => toggleTodo(id)}
+        />
       </figure>
       <div className="media-content" onDoubleClick={() => toggleEditMode(id)}>
         <div className="content">
           <p
             className="todo-task"
             data-priority={repeatStr('!', priority)}
-          ><strong>{text}</strong></p>
-          {dueDate && <p className="has-text-right"><small>Due date: {dueDateStr}</small></p> }
+          >{text}</p>
+          {dueDate && <p className="todo-date has-text-right">Due date: {dueDateStr}</p> }
         </div>
       </div>
       <div className="media-right">
