@@ -13,10 +13,10 @@ const MainSection = (props) => (
             />
             {props.todos.length > 0
               &&
-                <section role="todo-section">
+                <section>
                   <div className="tabs is-right is-small">
                     <ul>
-                      <li>Sort By</li>
+                      <li>Sort by</li>
                       <li className="is-active"><a>Default</a></li>
                       <li><a>Due Date</a></li>
                       <li><a>Priority</a></li>

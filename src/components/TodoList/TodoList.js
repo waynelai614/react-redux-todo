@@ -32,7 +32,7 @@ class TodoList extends Component {
 
   render() {
     return (
-      <section role="todoList">
+      <section>
         {renderTodoList(this.state.editItemId, this.toggleEditMode, this.props)}
       </section>
     )
