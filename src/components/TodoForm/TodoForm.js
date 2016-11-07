@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PrioritySelect from '../Common/PrioritySelect'
 
 const TODO_TEXT = 'text'
 const TODO_PROIORITY = 'priority'
@@ -66,14 +67,10 @@ class TodoForm extends Component {
             <label className="label">Priority</label>
             <p className="control">
               <span className="select is-fullwidth">
-                <select
+                <PrioritySelect
                   value={priority}
                   onChange={(e) => handleChange(TODO_PROIORITY, e)}
-                >
-                  <option value="2">High</option>
-                  <option value="1">Low</option>
-                  <option value="0">None</option>
-                </select>
+                />
               </span>
             </p>
           </div>

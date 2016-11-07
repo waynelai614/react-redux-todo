@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PrioritySelect from '../Common/PrioritySelect'
 
 const TODO_TEXT = 'text'
 const TODO_PROIORITY = 'priority'
@@ -26,11 +27,10 @@ const renderEditMode = (state, toggleEditMode, handleChange, handleEditTodo) => 
           <div className="column">
             <p className="control">
               <span className="select is-fullwidth">
-                <select value={priority} onChange={(e) => handleChange(TODO_PROIORITY, e)}>
-                  <option value="2">High</option>
-                  <option value="1">Low</option>
-                  <option value="0">None</option>
-                </select>
+                <PrioritySelect
+                  value={priority}
+                  onChange={(e) => handleChange(TODO_PROIORITY, e)}
+                />
               </span>
             </p>
           </div>
