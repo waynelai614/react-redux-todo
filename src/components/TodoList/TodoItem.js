@@ -65,7 +65,7 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
   return (
     <article className="media">
       <figure className="media-left">
-        <input type="checkbox" checked={completed} onClick={() => toggleTodo(id)} />
+        <input type="checkbox" checked={completed} onChange={() => toggleTodo(id)} />
       </figure>
       <div className="media-content" onDoubleClick={() => toggleEditMode(id)}>
         <div className="content">

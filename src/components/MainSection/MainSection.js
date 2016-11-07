@@ -26,7 +26,6 @@ const MainSection = (props) => {
                       </ul>
                     </div>
                     <TodoList {...props} />
-                    <hr/>
                     <div className="tabs is-centered is-toggle">
                       <ul>
                         <li className={filter === SHOW_ALL && "is-active"}><a onClick={() => props.actions.setVisibilityFilter(SHOW_ALL)}>All</a></li>
