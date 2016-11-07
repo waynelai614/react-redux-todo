@@ -1,0 +1,13 @@
+p.todo-task::before {
+  content: attr(data-priority);
+  margin-right: 0.5em;
+  color: red;
+}
+
+p.todo-task {
+  font-size: 1.5em;
+}
+
+.content p.todo-task:not(:last-child) {
+  margin-bottom: 0;
+}

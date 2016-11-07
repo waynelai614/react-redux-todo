@@ -2,8 +2,11 @@ import React from 'react'
 
 const OPTIONS = [
   {
-    id: 2,
+    id: 3,
     text: 'High'
+  }, {
+    id: 2,
+    text: 'Medium'
   }, {
     id: 1,
     text: 'Low'

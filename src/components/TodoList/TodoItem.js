@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PrioritySelect from '../Common/PrioritySelect'
+import './TodoItem.css'
 
 const TODO_TEXT = 'text'
 const TODO_PROIORITY = 'priority'
 
+// edit mode
 const renderEditMode = (state, toggleEditMode, handleChange, handleEditTodo) => {
   const { text, priority } = state
   return (
@@ -54,6 +56,10 @@ const renderEditMode = (state, toggleEditMode, handleChange, handleEditTodo) => 
   )
 }
 
+// view mode
+const repeatStr = (str, times) => {
+  return (new Array(times + 1)).join(str);
+}
 const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
   const { id, text, priority } = todo
   return (
@@ -63,7 +69,10 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
       </figure>
       <div className="media-content" onDoubleClick={() => toggleEditMode(id)}>
         <div className="content">
-          <p><strong>{text}</strong> - {priority}</p>
+          <p
+            className="todo-task"
+            data-priority={repeatStr('!', priority)}
+          ><strong>{text}</strong></p>
           <p>Due date: Today</p>
         </div>
       </div>
