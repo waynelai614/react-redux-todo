@@ -33,6 +33,15 @@
   vertical-align: baseline;
 }
 
+.DateInput--with-caret::before {
+  top: 43px;
+}
+
+.DateInput--with-caret::after {
+  top: 44px;
+  z-index: 100;
+}
+
 .CalendarDay__day {
   text-align: center;
 }

@@ -1,11 +1,16 @@
+article.todo-item p.todo-task:last-child {
+  padding: 10px 0;
+}
+
 article.todo-item p.todo-task::before {
   content: attr(data-priority);
-  margin-right: 0.5em;
+  margin-right: 0.3em;
   color: red;
 }
 
 article.todo-item p.todo-task {
   font-size: 1.5em;
+  word-break: break-word;
 }
 
 article.todo-item .content p.todo-task:not(:last-child) {
@@ -24,6 +29,7 @@ article.todo-item:last-child {
 }
 
 article.todo-item > .media-right {
+  padding: 13px 0;
   visibility: hidden;
 }
 
