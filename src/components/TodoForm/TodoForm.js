@@ -17,7 +17,7 @@ class TodoForm extends Component {
   }
 
   handleChange(propertyName, e) {
-    let value = (propertyName === TODO_PROIORITY) ? parseInt(e.target.value, 10) : e.target.value
+    const value = (propertyName === TODO_PROIORITY) ? parseInt(e.target.value, 10) : e.target.value
     this.setState({
       [propertyName]: value
     })
@@ -26,10 +26,12 @@ class TodoForm extends Component {
   handleAddTodo() {
     const { text, priority } = this.state
 
-    if (!text)
-    return
+    if (!text) {
+      this.refs.taskInput.focus()
+      return
+    }
 
-    this.props.addTodo(text)
+    this.props.addTodo(text, priority)
     this.setState({
       [TODO_TEXT]: '',
       [TODO_PROIORITY]: 0
@@ -45,11 +47,13 @@ class TodoForm extends Component {
             <label className="label">Task</label>
             <p className="control">
               <input
+                ref="taskInput"
                 className="input"
                 type="text"
                 value={text}
                 onChange={(e) => handleChange(TODO_TEXT, e)}
-                placeholder="What needs to be done?" />
+                placeholder="What needs to be done?"
+              />
             </p>
           </div>
           <div className="column is-3">
