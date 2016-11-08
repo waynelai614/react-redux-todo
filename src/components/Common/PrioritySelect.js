@@ -16,13 +16,13 @@ const OPTIONS = [
   }
 ]
 
-const renderOptions = (options) => {
-  return options.map((option) => {
+const renderOptions = (options) => (
+  options.map((option) => {
     return (
       <option key={option.id} value={option.id}>{option.text}</option>
     )
   })
-}
+)
 
 const PrioritySelect = ({ value, onChange }) => (
   <select

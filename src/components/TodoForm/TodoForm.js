@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PrioritySelect from '../Common/PrioritySelect'
 import SingleDatePickerWrapper from '../Common/SingleDatePickerWrapper'
 

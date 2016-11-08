@@ -6,7 +6,7 @@ import TodoBottom from './TodoBottom'
 import './MainSection.css'
 
 const MainSection = (props) => {
-  const { filter, sort, actions } = props
+  const { todos, filter, sort, actions } = props
   return (
     <section className="section MainSection">
       <div className="container">
@@ -16,7 +16,7 @@ const MainSection = (props) => {
               <TodoForm
                 addTodo={actions.addTodo}
               />
-              {props.todos.length > 0
+              {todos.length > 0
                 &&
                   <section>
                     <Tabs
@@ -28,8 +28,7 @@ const MainSection = (props) => {
                       selectedFilter={filter}
                       setVisibilityFilter={actions.setVisibilityFilter}
                     />
-                  </section>
-              }
+                  </section>}
             </div>
           </div>
         </div>
