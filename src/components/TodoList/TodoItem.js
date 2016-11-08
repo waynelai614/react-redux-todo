@@ -144,7 +144,7 @@ class TodoItem extends Component {
 
   handleDateFocusChange({ focused }) {
     this.setState({
-      dueDateFoucsed: focused
+      dueDateFoucsed: focused === null ? false : focused
     })
   }
 

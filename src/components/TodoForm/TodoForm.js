@@ -35,7 +35,7 @@ class TodoForm extends Component {
 
   handleDateFocusChange({ focused }) {
     this.setState({
-      dueDateFoucsed: focused
+      dueDateFoucsed: focused === null ? false : focused
     })
   }
 
