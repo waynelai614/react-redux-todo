@@ -39,12 +39,17 @@ class TodoList extends Component {
 
   render() {
     const { editItemId } = this.state
-    const { todos, filter, actions } = this.props
+    const { todos, filter, sort, actions } = this.props
     const filteredTodos = todos.filter(TODO_FILTERS[filter])
+
+    // use slice() to copy the array and not just make a reference
+    const sortTodos = filteredTodos.slice(0)
+    let visibilityTodos = sortTodos.sort((a, b) => b.id - a.id)
+    visibilityTodos = sort.isDescending ? visibilityTodos : visibilityTodos.reverse()
 
     return (
       <section>
-        {renderTodoList(editItemId, this.toggleEditMode, filteredTodos, actions)}
+        {renderTodoList(editItemId, this.toggleEditMode, visibilityTodos, actions)}
       </section>
     )
   }

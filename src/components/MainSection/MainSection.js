@@ -13,7 +13,7 @@ const TODO_SORTING = {
 
 const renderSortingLink = (sort, sortKey, sortBy) => {
   const { key, isDescending } = sort
-  const sortIconClassName = isDescending ? 'fa fa-sort-desc' : 'fa fa-sort-asc'
+  const sortIconClassName = isDescending ? 'fa fa-caret-down' : 'fa fa-caret-up'
   const iconClassName = (key === sortKey) ? sortIconClassName : 'fa fa-sort'
   return (
     <a onClick={() => sortBy(sortKey)}>
@@ -26,7 +26,7 @@ const renderSortingLink = (sort, sortKey, sortBy) => {
 const MainSection = (props) => {
   const { filter, sort } = props
   return (
-    <section className="section">
+    <section className="section MainSection">
       <div className="container">
         <div className="columns">
           <div className="column is-8 is-offset-2">
@@ -37,9 +37,9 @@ const MainSection = (props) => {
               {props.todos.length > 0
                 &&
                   <section>
-                    <div className="tabs is-right is-small">
+                    <div className="tabs TodoSorting is-right is-small">
                       <ul>
-                        <li>Sort by</li>
+                        <li style={{ paddingRight: '1em' }}>Sort by</li>
                         <li className={sort.key === SORT_BY_DEFAULT && "is-active"}>
                           {renderSortingLink(sort, SORT_BY_DEFAULT, props.actions.sortBy)}
                         </li>

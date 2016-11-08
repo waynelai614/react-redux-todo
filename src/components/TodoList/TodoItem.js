@@ -11,7 +11,7 @@ const TODO_PROIORITY = 'priority'
 const renderEditMode = (state, toggleEditMode, handleChange, handleDateChange, handleDateFocusChange, handleEditTodo) => {
   const { text, priority, dueDate, dueDateFoucsed } = state
   return (
-    <article className="media todo-item">
+    <article className="media TodoItem">
       <div className="media-content edit-mode">
         <div className="columns">
           <div className="column is-6">
@@ -75,7 +75,7 @@ const renderViewMode = (todo, toggleEditMode, toggleTodo, deleteTodo) => {
   const { id, text, priority, dueDate, completed } = todo
   const dueDateStr = moment(dueDate).format('YYYY/MM/DD')
   return (
-    <article className={`media todo-item ${ completed ? 'completed' : ''}`}>
+    <article className={`media TodoItem ${ completed ? 'completed' : ''}`}>
       <figure className="media-left">
         <input
           className="toggle"

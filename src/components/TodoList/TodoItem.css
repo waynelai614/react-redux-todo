@@ -1,75 +1,75 @@
-article.todo-item > .edit-mode {
+.TodoItem > .edit-mode {
   padding: 10px;
 }
 
-article.todo-item:first-child {
+.TodoItem:first-child {
   margin-top: -10px;
 }
 
-article.todo-item p.todo-task {
+.TodoItem p.todo-task {
   color: #363636;
   font-weight: 500;
   font-size: 1.5em;
   word-break: break-word;
 }
 
-article.todo-item p.todo-date {
+.TodoItem p.todo-date {
   font-size: 14px;
 }
 
-article.todo-item.completed p {
+.TodoItem.completed p {
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
 
-article.todo-item p.todo-task:last-child {
+.TodoItem p.todo-task:last-child {
   padding: 10px 0;
 }
 
-article.todo-item p.todo-task::before {
+.TodoItem p.todo-task::before {
   content: attr(data-priority);
   margin-right: 0.3em;
   color: red;
 }
 
-article.todo-item.completed p.todo-task::before {
+.TodoItem.completed p.todo-task::before {
   color: #d9d9d9;
 }
 
-article.todo-item .content p.todo-task:not(:last-child) {
+.TodoItem .content p.todo-task:not(:last-child) {
   margin-bottom: 0;
 }
 
-article.todo-item .button .icon:first-child,
-article.todo-item .button .icon:last-child {
+.TodoItem .button .icon:first-child,
+.TodoItem .button .icon:last-child {
   margin: 0 2px;
 }
 
-article.todo-item:last-child {
+.TodoItem:last-child {
   border-bottom: 1px solid rgba(219, 219, 219, 0.5);
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
 
-article.todo-item > .media-right {
+.TodoItem > .media-right {
   padding: 13px 0;
   visibility: hidden;
 }
 
-article.todo-item:hover > .media-right {
+.TodoItem:hover > .media-right {
   visibility: visible;
 }
 
-article.todo-item > .media-left {
+.TodoItem > .media-left {
   position: relative;
   width: 40px;
 }
 
-article.todo-item input[type="checkbox"]:focus{
+.TodoItem input[type="checkbox"]:focus{
   outline: 0;
 }
 
-article.todo-item .toggle {
+.TodoItem .toggle {
 	text-align: center;
 	width: 40px;
 	/* auto, since non-WebKit browsers doesn't support input styling */
@@ -84,10 +84,10 @@ article.todo-item .toggle {
 	appearance: none;
 }
 
-article.todo-item .toggle:after {
+.TodoItem .toggle:after {
 	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
 }
 
-article.todo-item .toggle:checked:after {
+.TodoItem .toggle:checked:after {
 	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
