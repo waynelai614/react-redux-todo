@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 import TodoItem from './TodoItem'
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../constants/TodoFilters'
+import { SORT_BY_DEFAULT, SORT_BY_DUE_DATE, SORT_BY_PRIORITY } from '../../constants/TodoSorting'
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
   [SHOW_ACTIVE]: todo => !todo.completed,
   [SHOW_COMPLETED]: todo => todo.completed
+}
+
+const TODO_SORT_BY = {
+  [SORT_BY_DEFAULT]: (a, b) => b.id - a.id,
+  [SORT_BY_DUE_DATE]: (a, b) => b.dueDate - a.dueDate,
+  [SORT_BY_PRIORITY]: (a, b) => b.priority - a.priority
 }
 
 const renderTodoList = (editItemId, toggleEditMode, todos, actions) => (
@@ -40,12 +47,9 @@ class TodoList extends Component {
   render() {
     const { editItemId } = this.state
     const { todos, filter, sort, actions } = this.props
-    const filteredTodos = todos.filter(TODO_FILTERS[filter])
 
-    // use slice() to copy the array and not just make a reference
-    const sortTodos = filteredTodos.slice(0)
-    let visibilityTodos = sortTodos.sort((a, b) => b.id - a.id)
-    visibilityTodos = sort.isDescending ? visibilityTodos : visibilityTodos.reverse()
+    const filteredAndSortedTodos = todos.filter(TODO_FILTERS[filter]).sort(TODO_SORT_BY[sort.key])
+    let visibilityTodos = sort.isDescending ? filteredAndSortedTodos : filteredAndSortedTodos.reverse()
 
     return (
       <section>
