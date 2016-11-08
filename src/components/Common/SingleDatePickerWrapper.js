@@ -17,4 +17,10 @@ const SingleDatePickerWrapper = (props) => {
   )
 }
 
+SingleDatePickerWrapper.propTypes = {
+  focused: React.PropTypes.bool.isRequired,
+  onDateChange: React.PropTypes.func,
+  onFocusChange: React.PropTypes.func
+}
+
 export default SingleDatePickerWrapper
