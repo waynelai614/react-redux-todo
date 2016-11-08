@@ -1,5 +1,5 @@
 .TodoItem > .edit-mode {
-  padding: 10px;
+  padding: 10px 0 10px 10px;
 }
 
 .TodoItem:first-child {

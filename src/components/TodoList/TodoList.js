@@ -8,8 +8,8 @@ const TODO_FILTERS = {
   [SHOW_COMPLETED]: todo => todo.completed
 }
 
-const renderTodoList = (editItemId, toggleEditMode, todos, actions) => {
-  return todos.map((todo) => {
+const renderTodoList = (editItemId, toggleEditMode, todos, actions) => (
+  todos.map((todo) => {
     return (
       <TodoItem
         key={todo.id}
@@ -20,7 +20,7 @@ const renderTodoList = (editItemId, toggleEditMode, todos, actions) => {
       />
     )
   })
-}
+)
 
 class TodoList extends Component {
   constructor(props) {
