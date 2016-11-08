@@ -7,6 +7,12 @@ import './MainSection.css'
 
 const MainSection = (props) => {
   const { todos, filter, sort, actions } = props
+  const completedCount = todos.reduce((count, todo) =>
+    todo.completed ? count + 1 : count,
+    0
+  )
+  const activeCount = todos.length - completedCount
+
   return (
     <section className="section MainSection">
       <div className="container">
@@ -25,8 +31,11 @@ const MainSection = (props) => {
                     />
                     <TodoList {...props} />
                     <TodoBottom
+                      activeCount={activeCount}
+                      completedCount={completedCount}
                       selectedFilter={filter}
                       setVisibilityFilter={actions.setVisibilityFilter}
+                      clearCompleted={actions.clearCompleted}
                     />
                   </section>}
             </div>

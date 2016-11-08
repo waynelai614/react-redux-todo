@@ -5,6 +5,7 @@ const ADD_TODO = 'ADD_TODO'
 const EDIT_TODO = 'EDIT_TODO'
 const TOGGLE_TODO = 'TOGGLE_TODO'
 const DELETE_TODO = 'DELETE_TODO'
+const CLEAR_COMPLETED = 'CLEAR_COMPLETED'
 
 // actions
 export const addTodo = (text, priority, dueDate) => ({
@@ -29,11 +30,16 @@ export const deleteTodo = (id) => ({
   id
 })
 
+export const clearCompleted = () => ({
+  type: CLEAR_COMPLETED
+})
+
 export const actions = {
   addTodo,
   editTodo,
   toggleTodo,
-  deleteTodo
+  deleteTodo,
+  clearCompleted
 }
 
 // reducers
@@ -67,6 +73,10 @@ const todos = (state = initialState, action) => {
     case DELETE_TODO:
       return state.filter(todo =>
         todo.id !== action.id
+      )
+    case CLEAR_COMPLETED:
+      return state.filter(todo =>
+        !todo.completed
       )
     default:
       return state

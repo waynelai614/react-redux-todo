@@ -2,6 +2,20 @@
   box-shadow: none;
 }
 
+.MainSection .todo-count,
+.MainSection .clear-completed {
+  padding: 8px;
+}
+
+.MainSection .clear-completed > a {
+  color: #4a4a4a;
+}
+
+.MainSection .todo-count > strong,
+.MainSection .clear-completed > a:hover {
+  color: #00d1b2;
+}
+
 .TodoSorting li span.icon {
   color: #dbdbdb;
 }
