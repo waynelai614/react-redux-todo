@@ -1,8 +1,8 @@
 import React from 'react'
-import TodoForm from '../TodoForm'
-import TodoList from '../TodoList'
 import Tabs from './Tabs'
+import TodoForm from './TodoForm'
 import TodoBottom from './TodoBottom'
+import TodoList from '../TodoList'
 import './MainSection.css'
 
 const MainSection = (props) => {
