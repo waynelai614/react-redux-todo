@@ -57,8 +57,6 @@ class TodoList extends Component {
       </section>
     )
   }
-
 }
-
 
 export default TodoList
