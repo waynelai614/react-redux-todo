@@ -1,6 +1,6 @@
 # React-Redux-Todo
 
-A Todo app built with `React`, `redux`, `ES6`, [Bulma CSS framework](http://bulma.io/).
+A Todo app built with `React`, `redux`, `ES6`, [Bulma CSS framework](http://bulma.io/) and [react-dates](https://github.com/airbnb/react-dates).
 
 This project is adapted from the [Redux TodoMVC Example](https://github.com/reactjs/redux/tree/master/examples/todomvc).
 
