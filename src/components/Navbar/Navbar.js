@@ -10,7 +10,7 @@ const Navbar = () => (
         </a>
       </div>
       <div className="nav-center">
-        <a className="nav-item" href="#">
+        <a className="nav-item" href="https://github.com/waynelai614/react-redux-todo">
           <span className="icon">
             <i className="fa fa-github"></i>
           </span>
