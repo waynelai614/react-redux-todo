@@ -1,71 +1,11 @@
 import React, { Component } from 'react'
-import PrioritySelect from '../Common/PrioritySelect'
-import SingleDatePickerWrapper from '../Common/SingleDatePickerWrapper'
 import moment from 'moment'
 import './TodoItem.css'
+import EditMode from './EditMode'
 
 const TODO_TEXT = 'text'
 const TODO_PROIORITY = 'priority'
 
-// edit mode
-const renderEditMode = (state, toggleEditMode, handleChange, handleDateChange, handleDateFocusChange, handleEditTodo) => {
-  const { text, priority, dueDate, dueDateFoucsed } = state
-  return (
-    <article className="media TodoItem">
-      <div className="media-content edit-mode">
-        <div className="columns">
-          <div className="column is-6">
-            <input
-              ref="taskInput"
-              type="text"
-              className="input"
-              autoFocus="true"
-              value={text}
-              onChange={(e) => handleChange(TODO_TEXT, e)}
-              placeholder="What needs to be done?"
-            />
-          </div>
-          <div className="column is-2">
-            <SingleDatePickerWrapper
-              date={dueDate}
-              focused={dueDateFoucsed}
-              onDateChange={handleDateChange}
-              onFocusChange={handleDateFocusChange}
-            />
-          </div>
-          <div className="column is-2">
-            <p className="control">
-              <span className="select is-fullwidth">
-                <PrioritySelect
-                  value={priority}
-                  onChange={(e) => handleChange(TODO_PROIORITY, e)}
-                />
-              </span>
-            </p>
-          </div>
-          <div className="column is-2">
-            <div className="control is-grouped">
-              <p className="control">
-                <a className="button is-primary" onClick={handleEditTodo}>
-                  <span className="icon is-small">
-                    <i className="fa fa-check"></i>
-                  </span>
-                </a>
-              </p>
-              <p className="control">
-                <a className="button" onClick={() => toggleEditMode(null)}>
-                  <span className="icon is-small">
-                    <i className="fa fa-times"></i>
-                  </span>
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  )
-}
 
 // view mode
 const repeatStr = (str, times) => {
@@ -170,7 +110,14 @@ class TodoItem extends Component {
   render() {
     const { editItemId, todo, toggleTodo, deleteTodo } = this.props
     if (editItemId === todo.id) {
-      return renderEditMode(this.state, this.toggleEditMode, this.handleChange, this.handleDateChange, this.handleDateFocusChange, this.handleEditTodo)
+      return <EditMode
+              toggleEditMode={this.toggleEditMode}
+              handleChange={this.handleChange}
+              handleDateChange={this.handleDateChange}
+              handleDateFocusChange={this.handleDateFocusChange}
+              handleEditTodo={this.handleEditTodo}
+              {...this.state}
+              />
     } else {
       return renderViewMode(todo, this.toggleEditMode, toggleTodo, deleteTodo)
     }
