@@ -40,18 +40,18 @@ const renderFilterLink = (selectedFilter, setVisibilityFilter) => (
 const TodoBottom = (props) => {
   const { activeCount, completedCount, selectedFilter, setVisibilityFilter, clearCompleted} = props
   return (
-    <div className="columns">
-      <div className="column has-text-left">
+    <div className="columns is-multiline is-mobile">
+      <div className="column todo-count-column is-half-mobile has-text-left">
         {renderTodoCount(activeCount)}
       </div>
-      <div className="column">
+      <div className="column filter-link-column">
         <div className="tabs is-centered is-toggle">
           <ul>
             {renderFilterLink(selectedFilter, setVisibilityFilter)}
           </ul>
         </div>
       </div>
-      <div className="column has-text-right">
+      <div className="column clear-link-column is-half-mobile has-text-right">
         {renderClearLink(completedCount, clearCompleted)}
       </div>
     </div>

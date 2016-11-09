@@ -1,3 +1,9 @@
+.todo-count-column,
+.filter-link-column,
+.clear-link-column {
+  order: none;
+}
+
 .MainSection input {
   box-shadow: none;
 }
@@ -70,4 +76,18 @@
 
 .CalendarDay__day {
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .todo-count-column,
+  .clear-link-column {
+    order: 1;
+  }
+  .filter-link-column {
+    order: 2;
+  }
+  .MainSection .todo-count,
+  .MainSection .clear-completed {
+    padding: 0;
+  }
 }
